@@ -6,15 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>RegionsJob - HTML/CSS Guidelines</title>
+    <title>HTML/CSS Guidelines</title>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300normal,700normal&amp;subset=all" rel="stylesheet" type="text/css">
 
     <link href="style.css" rel="stylesheet" type="text/css" />
-
-    <!--[if lt IE 9><!-->
-    <link href="http://ressources.regionsjob.com/fonts/css/OpenSans.css" rel="stylesheet" type="text/css">
-    <!--<![endif]-->
 
 </head>
 
@@ -28,7 +24,7 @@
 
     <div class="wrapper">
 
-        <h1>RegionsJob - HTML/CSS Guidelines</h1>
+        <h1>HTML/CSS Guidelines</h1>
 
     </div>
 
@@ -733,7 +729,7 @@ $breakpoints: (
 
 <h3 id="support">Support navigateurs</h3>
 
-<p><strong>Chez RegionsJob, ce sont les développeurs frontend qui sont les garants de la compatibilité entre les différents navigateurs.</strong></p>
+<p><strong>Ce sont les développeurs frontend qui sont les garants de la compatibilité entre les différents navigateurs.</strong></p>
 
 <p>Leur rôle est aussi de faire les recommendations sur les navigateurs qui seront supportés par nos sites en se basant sur les stats analytics de chacun. <a href="http://www.google.com/analytics/" target="_blank">Lien vers Google Analytics</a></p>
 
@@ -826,15 +822,15 @@ $breakpoints: (
 <p>Afin de porter attention aux performances frontend, nous veillerons à ne pas appeler Modernizr en haut du DOM sur les navigateurs récents. Nous aurons ainsi la ligne ci-dessous dans le <code><head></code> pour les anciens navigateurs (IE7 et 8) :</p>
 
 <pre><code>
-&lt;!--[if lt IE 9 ]>&lt;script src="http://ressources.regionsjob.com/project/js/modernizr.min.js">&lt;/script>&lt;![endif]-->
+&lt;!--[if lt IE 9 ]>&lt;script src="http://www.roottoproject.com/modernizr.min.js">&lt;/script>&lt;![endif]-->
 
 </code></pre>
 
 <p>Et en bas du DOM pour les navigateurs les plus récents :</p>
 
 <pre><code>
-&lt;!--[if gte IE 9]&gt;&lt;script src="http://ressources.regionsjob.com/xjob/tags/1.3.7/js/modernizr.min.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
-&lt;!--[if !IE]&gt;&lt;!--&gt; &lt;script src="http://ressources.regionsjob.com/xjob/tags/1.3.7/js/modernizr.min.js"&gt;&lt;/script&gt; &lt;!--![endif]--&gt;
+&lt;!--[if gte IE 9]&gt;&lt;script src="http://www.roottoproject.com/modernizr.min.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+&lt;!--[if !IE]&gt;&lt;!--&gt; &lt;script src="http://www.roottoproject.com/modernizr.min.js"&gt;&lt;/script&gt; &lt;!--![endif]--&gt;
 
 </code></pre>
 
