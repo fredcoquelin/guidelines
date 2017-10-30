@@ -1,0 +1,290 @@
+/**
+* Project: CSS Guidelines - Regionsjob
+* URL: http://integration.regionsjob.dom/guidelines/
+* Made by: Fred Coquelin
+*/
+
+
+
+
+
+/*----------------------------------------------
+    GLOBAL
+----------------------------------------------*/
+
+body {
+    color: #333333;
+    font-family: Arial;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #26b9a6;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 720px;
+    padding: 0 24px;
+    width: 100%:;
+}
+
+hr {
+    border: none;
+    border-top: 5px solid #f0eeeb;
+    margin-bottom: 60px;
+}
+
+pre {
+    background-color: #424242;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin-left: -24px;
+    margin-right: -24px;
+    overflow: auto;
+    padding: 24px;
+}
+
+
+
+
+
+/*----------------------------------------------
+    HEADINGS
+----------------------------------------------*/
+
+h1, h2, h3, h4 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+h3 {
+    color: #00a99b;
+    font-size:   40px;
+    font-weight: normal;
+    margin-top:  40px;
+    margin-left: -20px;
+}
+
+h4 {
+    color: #1f7dcd;
+    font-size: 30px;
+    font-weight: normal;
+}
+
+
+
+
+
+/*----------------------------------------------
+    TYPO
+----------------------------------------------*/
+
+p {
+    line-height: 22px;
+}
+
+li {
+    line-height: 22px;
+}
+
+a {
+    color: #26b9a6;
+    text-decoration: none;
+}
+
+code {
+    color: #d11c58;
+    font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-weight: normal;
+    line-height: 24px;
+}
+
+pre code {
+    color: #FFFFFF;
+}
+
+
+.ppre {
+    font-family: 'Open Sans Condensed';
+    margin-bottom: -1em;
+    text-align: right;
+}
+
+.ppre-dont { border-bottom: 10px solid #F9DADA }
+.ppre-do { border-bottom: 10px solid #DAF9DA; }
+
+
+
+
+
+/*----------------------------------------------
+    BUTTON
+----------------------------------------------*/
+
+.button {
+    background-color: #999999;
+    color: #FFFFFF;
+    display: block;
+    font-weight: bold;
+    height: 100px;
+    line-height: 100px;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+
+
+
+
+/*----------------------------------------------
+	MEDIA QUERIES
+----------------------------------------------*/
+
+/* Tablet paysage */
+@media screen and (max-width: 1024px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    .chapter {
+        background-size: auto auto;
+    }
+
+    .first, .second, .third, .fourth, .fifth {
+        background-attachment: scroll;
+        background-size: auto auto;
+    }
+
+
+    /* First step */
+    .first .bulle {
+        left: 50%;
+        margin-left: -187px;
+        top: 20px;
+    }
+
+        .first .story {
+            left: 50%;
+            margin-left: -282px;
+        }
+
+        .first a.picto-next {
+            bottom: 30px;
+            left: 50%;
+            margin: 0 0 0 -26px;
+            top: auto;
+        }
+
+
+    /* Third step */
+    .overlay-etape3,
+    .overlay-etape4,
+    .overlay-etape5 {
+        background-attachment: scroll;
+        background-size: 100% auto;
+    }
+
+
+    /* Fifth step */
+    .fifth .text {
+        width: 410px;
+        margin-right: 50px;
+    }
+}
+
+
+/* Tablet portrait */
+@media screen and (max-width: 768px) {
+    .first, .second, .third, .fourth, .fifth {
+        background-size: auto 100%;
+    }
+
+    .overlay-etape3{
+        background-attachment: scroll;
+        background-position: -25px 100%;
+        background-size: 100% auto;
+    }
+
+    .overlay-etape4 {
+        display: none;
+    }
+
+    /* Fifth step */
+    .fifth .text {
+        width: 330px;
+        margin-right: 20px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 568px) {
+    h1, .h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .button {
+        font-size: 30px;
+        height: 80px;
+        line-height: 80px;
+        margin: 20px auto 0;
+        max-width: 400px;
+    }
+
+    .story {
+        padding: 10px 0;
+    }
+
+    .text p {
+        display: none;
+    }
+
+    /* Third step */
+    .overlay-etape3,
+    .overlay-etape5 {
+        display: none;
+    }
+
+        .third .text {
+            width: auto;
+            margin: auto;
+            left: auto;
+            text-align: center;
+        }
+
+
+    /* Fifth step */
+    .fifth .story {
+        top: 20%;
+        margin-top: 0px;
+    }
+
+        .fifth .text {
+            float: none;
+            width: 100%;
+            margin-right: auto;
+            padding: 0 10px;
+            text-align: center;
+        }
+}

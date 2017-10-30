@@ -1,0 +1,49 @@
+# Default conf here: https://github.com/brigade/scss-lint/blob/master/config/default.yml
+
+linters:
+  BorderZero:
+    enabled: true
+    convention: none # or `zero`
+
+  CapitalizationInSelector:
+    enabled: false
+
+  ColorVariable:
+    enabled: false
+
+  Comment:
+    enabled: false
+
+  HexLength:
+    enabled: true
+    style: long # or 'short'
+
+  HexNotation:
+    enabled: true
+    style: uppercase # or 'lowercase'
+
+  Indentation:
+    enabled: true
+    width: 4
+
+  NestingDepth:
+    enabled: true
+    max_depth: 5
+
+  PlaceholderInExtend:
+    enabled: false
+
+  QualifyingElement:
+    enabled: true
+    allow_element_with_attribute: true
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 4
+
+  StringQuotes:
+    enabled: true
+    style: double_quotes # or single_quotes
+
+  VendorPrefix:
+    enabled: false

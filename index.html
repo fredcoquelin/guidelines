@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>RegionsJob - HTML/CSS Guidelines</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300normal,700normal&amp;subset=all" rel="stylesheet" type="text/css">
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <!--[if lt IE 9><!-->
+    <link href="http://ressources.regionsjob.com/fonts/css/OpenSans.css" rel="stylesheet" type="text/css">
+    <!--<![endif]-->
+
+</head>
+
+
+
+
+
+<body>
+
+<header>
+
+    <div class="wrapper">
+
+        <h1>RegionsJob - HTML/CSS Guidelines</h1>
+
+    </div>
+
+</header>
+
+
+
+
+
+<div class="wrapper">
+
+<h2>Des conseils et des directives pour coder notre HTML et nos CSS de façon propre, maintenable et évolutive</h2>
+
+<nav>
+
+    <h3>Contenu</h3>
+
+    <ul>
+
+        <li><a href="#introduction">Introduction</a>
+            <ul>
+                <li><a href="#importance">L'importance d'un Styleguide</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#linter">Utilisation d'un linter</a> <code>*new*</code></li>
+
+        <li><a href="#syntaxe">Syntaxe et formattage</a>
+            <ul>
+                <li><a href="#emmet">THE tips : Emmet</a> <code>*new*</code></li>
+                <li><a href="#titrage">Titrage</a></li>
+                <li><a href="#anatomie">Anatomie d'une règle CSS</a> <code>*new*</code></li>
+                <li><a href="#css-lines">CSS sur plusieurs lignes</a></li>
+                <li><a href="#indentation">L'indentation Sass</a></li>
+                <!-- <li><a href="#alignement">Alignement</a></li> -->
+                <li><a href="#espaces">Utilisation significative des espaces</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#commentaires">Commentaires</a>
+            <ul>
+                <li><a href="#modele-commentaires">Modèle de commentaires</a></li>
+                <li><a href="#etendre-proprietes">Étendre les propriétés d'un objet</a></li>
+                <li><a href="#commentaires-prepros">Commetaires et préprocesseurs</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#nommage">Convention de nommage</a> <code>*new*</code>
+            <ul>
+                <li><a href="#tiret-separateur">Tiret séparateur</a> <code>*new*</code></li>
+                <li><a href="#bem">Un soupçon de BEM</a> <code>*new*</code></li>
+            </ul>
+        </li>
+
+        <li><a href="#selecteurs">Sélecteurs CSS</a>
+            <ul>
+                <li><a href="#regles-generales">TL;DR - règles générales</a> <code>*new*</code></li>
+                <li><a href="#intention-selecteur">Intention d'un sélecteur</a> <code>*new*</code></li>
+                <li><a href="#performance-selecteur">Performance des sélecteurs</a> <code>*new*</code></li>
+                <li><a href="#reutilisation-selecteur">Réutilisation</a> <code>*new*</code></li>
+                <li><a href="#id-dans-css">Les IDs dans la CSS</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#responsive">Le respsonsive</a>
+            <ul>
+                <li><a href="#nommer-pdr">Nommer les points de rupture</a></li>
+                <li><a href="#gestion-pdr">Gestion des points de rupture</a></li>
+                <li><a href="#mediaqueries">Utilisation des media-queries</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#support">Support navigateurs</a></li>
+
+        <li><a href="#html">HTML</a>
+            <ul>
+                <li><a href="#html-format">Formattage</a></li>
+                <li><a href="#doctype">Doctype</a></li>
+                <li><a href="#encoding">Encoding</a></li>
+                <li><a href="#attributs">Ordre des attributs</a></li>
+                <li><a href="#modernizr">Modernizr</a></li>
+            </ul>
+        </li>
+
+        <br>
+
+        <li>Coming soon
+            <ul>
+                <li>Grille</li>
+                <li>Sprites</li>
+                <li>…</li>
+            </ul>
+        </li>
+
+   </ul>
+
+</nav>
+<hr>
+
+
+
+
+
+<h3 id="introduction">Introduction</h3>
+
+<p>CSS n'est pas un langage sexy: pour beaucoup il est simple à apprendre et à mettre en place, mais il devient vite problématique même à petite échelle. On ne peut pas faire grand chose pour changer la façon dont CSS fonctionne, mais on peut changer la manière dont on la structure.</p>
+
+<p>Dans le travail sur de longs projets, avec des développeurs ayant différentes spécialités et capacités, il est important d'avoir une façon de travailler unifiée pour:</p>
+
+<ul>
+    <li>Garder des feuilles de style maintenables.</li>
+    <li>Garder un code transparent, sain et lisible.</li>
+    <li>Garder des feuilles de style évolutives.</li>
+</ul>
+
+<p>Il y a différentes techniques pour arriver à cet objectif, et je me suis grandement inspiré des recommandations faites par <a href="http://csswizardry.com/" target="_blank">Harry Roberts</a>, grande référence dans le milieu de l'intégration.</p>
+
+<h4 id="importance">L'importance d'un Styleguide</h4>
+
+<p>Un guide de code est un outil précieux pour les équipes qui:</p>
+
+<ul>
+    <li>code et maintienne des produits.</li>
+    <li>ont des développeurs avec différentes capacités et spécialités.</li>
+    <li>travaillent en même temps sur un projet.</li>
+    <li>intégrent des nouvelles personnes régulièrement.</li>
+</ul>
+
+<p>Les styleguides sont parfaitement adapté à notre strucutre aves des projets à long terme, en constante évolution et avec plusieurs développeurs contribuant sur de longues périodes. C'est pour cela qu'il est important que chacun s'efforce à avoir un certain degré de standardisation dans son code.</p>
+
+<p>Un bon Styleguide permet:</p>
+
+<ul>
+    <li>de mettre en place un standard pour la qualité du code sur toute notre base de code.</li>
+    <li>d'avoir une cohérence entre les différents projets.</li>
+    <li>de donner un sentiment de familiarité dans tous les projets.</li>
+    <li>d'accroitre la productivité.</li>
+</ul>
+<hr>
+
+
+
+
+
+<h3 id="linter">Utilisation d'un linter</h3>
+
+<p>Le moyen le plus simple pour respecter les règles mises en place dans un styleguide est d'installer un linter dans son IDE favori. Pour faire simple, un linter va vous alerter lorsque vous ne respectez pas les règles que vous avez mises en place pendant que vous codez</p>
+
+<p>Personnellement j'utilise Sublime Text et j'ai installé le package <a href="https://packagecontrol.io/packages/SublimeLinter" target="_blank">SublimeLinter</a> couplé au package <a href="https://packagecontrol.io/packages/SublimeLinter-contrib-scss-lint" target="_blank">SublimeLinter-contrib-scss-lint</a>.</p>
+
+<p>Afin de tous utiliser les mêmes règles et donc le même linter, voici les liens vers les différents fichiers de conf que j'utilise :</p>
+
+<ul>
+    <li>La conf SublimeLinter : <a href="sublimelinter/SublimeLinter.sublime-settings" target="_blank">ici</a></li>
+    <li>La conf pour Sass : <a href="sublimelinter/sass.yml" target="_blank">ici</a></li>
+    <li>Et en bonus la conf linter que j'utlise pour le JS : <a href="sublimelinter/jshint.conf" target="_blank">ici</a></li>
+</ul>
+
+
+
+
+
+<h3 id="syntaxe">Syntaxe et formattage</h3>
+
+<p>Une des caractéritiques les plus simples du Styleguide à mettre en place est un ensemble de règles concernant la syntaxe et la mise en forme. Avoir une manière d'écrire nos CSS (au sens littéral du terme) signifie que le code sera toujours perçu de manière familière par les membres de l'équipe.</p>
+
+<p>Il s'agit d'avoir un environnement où il est beaucoup plus agréable de travailler, et donne envie aux autres membres de l'équipe de maintenir le niveau de propreté qu'ils ont trouvé.</p>
+
+<p>Quelques règles très générales</p>
+
+<ul>
+    <li>Quatre (4) espaces pour l'indentation (paramétrable facilement dans nos éditeurs). Pas de tabulations</li>
+    <li>CSS sur plusieurs lignes</li>
+    <li>Utilisation significative des espaces</li>
+</ul>
+
+
+<h4 id="emmet">THE tips : Emmet</h4>
+
+<p>Avant toute chose, on va commencer par se simplifier la vie et gagner du temps en utilisant Emmet (anciennement appelé ZenCoding). Pour faire très simple, Emmet nous permet d'écrire beaucoup plus rapidement notre HTML et nos CSS.</p>
+
+<p>Exemple sur HTML, <code>ul>li*5</code> donnera :</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<p>Ou en CSS, <code>m20</code> donnera :</p>
+
+<pre><code>margin: 20px;</code></pre>
+
+<p>Je vous laisse aller lire la doc qui est bourée d'exemples : <a href="http://docs.emmet.io/cheat-sheet/" target="_blank">http://docs.emmet.io/cheat-sheet/</a></p>
+
+
+<h4 id="titrage">Titrage</h4>
+
+<p>Commencez chaque section majeure de votre CSS par un titre:</p>
+
+<pre><code>/*--------------------------------------
+    #SECTION-TITLE
+--------------------------------------*/
+
+.selector {
+}</code></pre>
+
+<p>Le titre de la section est préfixé par un dièse (<code>#</code>) pour faciliter la recherche dans les différents fichiers CSS: plutôt que de juste rechercher <code>SECTION-TITLE</code> qui va remonter énormément de résultats, <code>#SECTION-TITLE</code> retournera uniquement la section en question.</p>
+
+<p>Laissez une ligne vide entre ce titre et la ligne de code suivante.</p>
+
+<p>Au vue de notre organisation en multiple fichiers avec SASS, ce type de titre sera donc présent au début de chacun des fichiers. Dans le cas où on a plusieurs sections dans un fichier, le titre devra être précédé de cinq (5) retours à la ligne. Ce grand espace, couplé au titre permet aux nouvelles sections d'être repérées plus facilement lorqu'on scoll dans un long fichier:</p>
+
+<pre><code>/*--------------------------------------
+    #A-SECTION
+--------------------------------------*/
+
+.selector {}
+
+
+
+
+
+/*--------------------------------------
+    #ANOTHER-SECTION
+--------------------------------------*/
+
+/**
+ * Comment
+ */
+
+.another-selector {}</code></pre>
+
+
+<h4 id="anatomie">Anatomie d'une règle CSS</h4>
+
+<p>Une déclaration CSS aura toujours ce format:</p>
+
+<pre><code>.foo,
+.foo-bar,
+.bar {
+    background-color: #00FF00;
+    color: #FF0000;
+    display: block;
+    margin: 0 20px;
+    z-index: 1;
+}
+</code></pre>
+
+<p>Ici, on peut voir que l'on a:</p>
+
+<ul>
+    <li>un sélecteur par ligne.</li>
+    <li>un espace avant l'accolade d'ouverture (<code>{</code>).</li>
+    <li>les propiétés et les valeurs sur la même ligne</li>
+    <li>les propriéts ordonnées par ordre alphabétique</li>
+    <li>pour une propriété de couleur, on utilise le code hexadécimal sur 6 caractères.</li>
+    <li>les propriétés ayant une valeur de 0 n'ont pas d'unités.</li>
+    <li>un espace après la délimitation entre propriété et valeur (<code>:</code>).</li>
+    <li>chaque déclaration sur sa propre ligne.</li>
+    <li>l'accolade ouvrante (<code>{</code>) sur la même ligne que le sélecteur.</li>
+    <li>la première déclaration sur une nouvelle ligne après l'accolade d'ouverture (<code>{</code>).</li>
+    <li>l'accolade de fermeture (<code>}</code>) sur sa propre ligne.</li>
+    <li>chaque déclaration est indenté de quatre (4) espaces.</li>
+    <li>un point-virgule (<code>;</code>) sur la dernière déclaration.</li>
+</ul>
+
+
+<h4 id="css-lines">CSS sur plusieurs lignes</h4>
+
+<p>CSS se doit d'être écrit sur plusieurs lignes, exceptées dans certaines circonstances spécifiques. Il y a des bénéfices à cela:</p>
+
+<ul>
+    <li>Une réduction des chances de conflits lors d'un "merge", car chaque propriété a sa propre ligne.</li>
+    <li>Une représentation de la réalité plus fidèle, une ligne n'exerce qu'un changement.</li>
+</ul>
+
+<p>Les exceptions à cette règle sont assez évident, comme pour des règles CSS semblables qui ne contiennent qu'une seule déclaration, exemple:</p>
+
+<pre><code>.icon {
+    background-image: url(/img/sprite.svg);
+    display: inline-block;
+    height: 16px;
+    width:  16px;
+}
+
+.icon-home     { background-position:   0     0  ; }
+.icon-person   { background-position: -16px   0  ; }
+.icon-files    { background-position:   0   -16px; }
+.icon-settings { background-position: -16px -16px; }
+</code></pre>
+
+<p>Ce type de règles CSS peuvent être sur une ligne car:</p>
+
+<ul>
+    <li>Elles sont toujours conformes à "un changement-une ligne".</li>
+    <li>Elles ont plus d'intérêt à être lues ainsi, de par leur similitudes.</li>
+</ul>
+
+
+<h4 id="indentation">L'indentation Sass</h4>
+
+<p>Grâce à la possibilité d'imbrication dans Sass, l'indentation aura cette forme:</p>
+
+<pre><code>.foo {
+    color: red;
+
+    .bar {
+        color: blue;
+    }
+
+}</code></pre>
+
+<p>Dans l'indentation Sass, on utilise les mêmes quatre (4) espaces que précedemment, et on laisse également une ligne vide avant et après une règle CSS.</p>
+
+
+<!-- <h4 id="alignement">Alignement</h4>
+
+<p>Dans la mesure du possible, essayez d'aligner les propriétés identiques ou connexes dans les déclarations, par exemple:</p>
+
+<pre><code>.foo {
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.bar {
+    margin-right: -10px;
+    margin-left:  -10px;
+    padding-right: 10px;
+    padding-left:  10px;
+    position: absolute;
+    top:    0;
+    right:  0;
+    bottom: 0;
+    left:   0;
+    width:  200px;
+    height: 200px;
+}
+</code></pre>
+
+<p><strong>NB:</strong> On délaisse l'ordre alphabétique pour regrouper certaines propriétés entre elles, l'ordre est toujours là si on se réfère à la première propriété d'un groupe (<code>margin > padding > position > top > width</code>)</p>
+ -->
+
+<h4 id="espaces">Utilisation significative des espaces</h4>
+
+<p>Tout comme pour l'indentation, on peut fournir beaucoup d'information en utilisant les espaces entre les règles CSS de manières judicieuses. On utilise:</p>
+
+<ul>
+    <li>Une (1) ligne vide entre des règles CSS liées entre elles.</li>
+    <li>Deux (2) lignes vides entre des règles CSS qui ne sont pas liées entre elles.</li>
+    <li>Cing (5) lignes vides entre les sections.</li>
+</ul>
+
+<p>Par exemple:</p>
+
+<pre><code>/*--------------------------------------
+    #FOO
+--------------------------------------*/
+
+.foo {
+
+    .foo-bar {}
+
+}
+
+
+.foobaz {}
+
+
+
+
+
+/*--------------------------------------
+    #BAR
+--------------------------------------*/
+
+.bar {
+
+    .bar-baz {}
+
+    .bar-foo {}
+}</code></pre>
+
+<hr>
+
+
+
+
+
+<h3 id="commentaires">Commentaires</h3>
+
+<p>CSS est un monde en constante évolution, si on rajoute à cela la spécificité de chacun des projets dont on doit se rappeler, on peut se retrouver devant la pire situation qu'on connait tous: <i>"être la personne qui n'a pas écrit ce code"</i>. Se rappeler de ses propres nom de classes, règles et objets est gérable dans une certaine mesure, mais tout l'héritage CSS, il y a peu de chances.</p>
+
+<p><strong>CSS a besoin de plus de commentaires.</strong></p>
+
+<p>Comme CSS est une sorte de langage déclaratif, il est parfois difficile, en regardant uniquement le CSS, de discerner:</p>
+
+<ul>
+    <li>si la CSS repose sur un code présent ailleurs.</li>
+    <li>quelles conséquences aura la modification d'une partie du code sur une autre.</li>
+    <li>quelles autres CSS peuvent être utilisées.</li>
+    <li>quels styles peuvent être hérités (intentionnelement ou non)</li>
+    <li>quels styles peuvent être surchargés (intentionnelement ou non)</li>
+</ul>
+
+<p>Bien sûr, toutes les propriétés n'ont pas besoin de commentaires. Il va sans dire qu'il n'y a pas besoin de dire quoi que ce soit sur <code>color: red;</code>, mais si vous utilisez <code>overflow: hidden;</code> pour annuler le comportement flottant (<code>float</code>) plutôt que de l'utiliser pour masquer tout ce qui déborde de ce bloc, c'est probablement quelque chose d'intéressant à documenter.</p>
+
+
+<h4 id="modele-commentaires">Modèle de commentaires</h4>
+
+<p>Pour des commentaires sur plusieurs lignes, on utilisera ce modèle:</p>
+
+<pre><code>/**
+ * The site’s main page-head can have two different states:
+ *
+ * 1) Regular page-head with no backgrounds or extra treatments; it just
+ *    contains the logo and nav.
+ * 2) A masthead that has a fluid-height (becoming fixed after a certain point)
+ *    which has a large background image, and some supporting text.
+ *
+ * The regular page-head is incredibly simple, but the masthead version has some
+ * slightly intermingled dependency with the wrapper that lives inside it.
+ */
+</code></pre>
+
+
+<h4 id="etendre-proprietes">Étendre les propriétés d'un objet</h4>
+
+<p>Dans dans le cas d'un travail sur de multiples fichiers CSS, comme ici avec SASS, on est souvent amener à étendre les propiétés d'un objet CSS qui a été définit dans un fichier différent de celui dans lequel nous sommes. Documenter la relation entre les différents fichiers est intéressant. Dans le fichier d'origine:</p>
+
+<pre><code>/**
+ * Extend `.btn {}` in _annonce.scss.
+ */
+
+.btn {}</code></pre>
+
+<p>Et dans le fichier dans lequel on étend ou surcharge les propriétés de l'objet:</p>
+
+<pre><code>/**
+ * These rules extend `.btn {}` in _buttons.scss.
+ */
+
+.btn-success {color: #00FF00;}
+
+.btn-error {color: #FF0000;}
+</code></pre>
+
+<p>C'est relativement simple et ça demande peu d'efforts, le développeur qui passera après vous sera au courant des relations au sein du projet. Il saura comment, pourquoi et où sont les autres objets héritants ou ayant des héritages.</p>
+
+
+<h4 id="commentaires-prepros">Commentaires et préprocesseurs</h4>
+
+<p>Avec Sass, on a la possibilité d'indiquer des commentaires qui ne seront pas présent dans la CSS compilée grâce à des doubles slash (<code>//</code>). Par exemple:</p>
+
+<pre><code>// Dimensions of the @2x image sprite:
+$sprite-width:  920px;
+$sprite-height: 212px;
+
+/**
+ * 1. Default icon size is 16px.
+ * 2. Squash down the retina sprite to display at the correct size.
+ */
+.sprite {
+    background-image: url(/img/sprites/main.png);
+    background-size: ($sprite-width / 2 ) ($sprite-height / 2); /* [2] */
+    height: 16px; /* [1] */
+    width:  16px; /* [1] */
+}</code></pre>
+
+<p>Dans cet exemple, le commentaires utilisé pour les variables Sass n'apparaitra pas dans la CSS compilée. Et bien sûr, aucun commentaires n'apparaitra dans la CSS de production une fois passée la minification.</p>
+
+<hr>
+
+
+
+
+
+<h3 id="nommage">Convention de nommage</h3>
+
+<p>Avoir une convention de nommage est très utile et permet d'avoir un code plus stricte, plus transparent et plus informatif.</p>
+
+<p>Une bonne convention de nommage permet à vous et votre équipe:</p>
+
+<ul>
+    <li>quel genre de chose fait cette class,</li>
+    <li>où une class peut être utilisée,</li>
+    <li>à quelle autre class est-elle liée.</li>
+</ul>
+
+
+<h4 id="tiret-separateur">Tiret séparateur</h4>
+
+<p>Tous les mots dans les noms de class sont séparés par un tiret (<code>-</code>), comme ici:</p>
+
+<p class="ppre ppre-do">Do</p>
+<pre><code>.page-head {}
+
+.subcontent-picture {}</code></pre>
+
+<p>Les écritures avec underscores ou majuscules sont incorrectes:</p>
+
+<p class="ppre ppre-dont">Don't</p>
+<pre><code>.pageHead {}
+
+.sub_content {}</code></pre>
+
+
+<h4 id="bem">Un soupçon de BEM</h4>
+
+<p>BEM c'est quoi? BEM est une methodologie de nommage pour le frontend qui signifie <i>Block, Element, Modifier</i>. C'est une manière très rusée de donner des noms à ses class. Cette convention de nommage suit ce modèle:</p>
+
+<pre><code>.block {}
+.block__element {}
+.block--modifier {}</code></pre>
+
+<ul>
+    <li><code>.block</code> représente le plus haut niveau d'un composant ou d'une abstraction.</li>
+    <li><code>.block__element</code> représente un élément enfant de <code>.block</code></li>
+    <li><code>.block--modifier</code> représente un état différent de <code>.block</code></li>
+</ul>
+
+<p>Si on prend l'exemple du moteur de recherche présent sur les Xjobs, ça nous donnerait:</p>
+
+<pre><code>.search-form {} <span class="code-comment">/* Block */</span>
+.search-form__field {} <span class="code-comment">/* Element */</span>
+.search-form--entreprise {} <span class="code-comment">/* Modifier */</span></code></pre>
+
+<p>C'est moche hein? :)</p>
+
+<p>C'est pour cela que l'on ne va pas prendre qu'un soupçon de BEM. Avec Sass, on mettra plutôt en place ce type de structure:</p>
+
+<pre><code>.searchform {                      <span class="code-comment">/* Block */</span>
+
+    .searchform-field {}           <span class="code-comment">/* Element */</span>
+}
+
+.searchform-entreprise {}     <span class="code-comment">/* Modifier */</span></code></pre>
+
+<!-- <p><strong>NB:</strong> L'utilisation de l'écriture pour <i>Element</i> n'est possible qu'à partir de la version 3.3 de Sass.</p> -->
+
+<p>Pour le <i>Modifier</i>, le nom de la class resituera toujours le contexte dans lequel on se trouve. Ici on ajoute <code>searchform</code> avant <code>entreprise</code>.</p>
+
+<hr>
+
+
+
+
+
+<h3 id="selecteurs">Sélecteurs CSS</h3>
+
+<p>Certains seront peut-être surpris, mais l'écriture de bon sélecteurs CSS est l'une des choses les plus fondamentales, et fait partie d'un des aspects les plus importants de l'écriture d'une CSS maintenable et évolutive.</p>
+
+
+<h4 id="regles-generales">TL;DR - règles générales</h4>
+
+<p>Les sélecteurs sont fondamentaux pour écrire de bonnes CSS. Pour faire un bref résumé des chapitres qui vont suivres, voici une petite liste:</p>
+
+<ul>
+    <li><strong>Séléctionner explicitement ce que l'on veut</strong>, plutôt que de compter sur une circonstance favorable ou une coïncidence. Une bonne intention sur vos sélecteurs freinera leur portée et la fuite de vos styles.</li>
+    <li><strong>Écrire des sélecteurs réutilisables</strong>, vous pourrez ainsi travailler plus éfficacement et réduire les pertes et répétitions.</li>
+    <li><strong>Ne localiser pas vos sélecteurs inutilement</strong>, parce que que cela va augmenter la spécificité et diminuer les endroits ou vous pouvez utiliser vos styles.</li>
+    <li><strong>Ne pas indiquer de sélecteurs inutiles</strong>, cela aurait un impact sur le nombre d'éléments sur lesquels sont appliqués les styles.</li>
+    <li><strong>Garder des sélecteurs aussi court que possible</strong>, pour dans l'ordre: garder la spécificité et accroitre la performance.</li>
+    <li><strong>Ne pas utiliser d'IDs !</strong></li>
+</ul>
+
+
+<h4 id="intention-selecteur">Intention d'un sélecteur CSS</h4>
+
+<p>Lorsque nous écrivons nos CSS il est important de dimensionner correctement nos sélecteurs, et que nous sélectionnons les bonne schoses pour les bonnes raison. L'intention d'un sélecteur est le process pour décider et définir ce que nous voulons styler et la manière dont nous allons le sélectionner. Par exemple si nous voulons styler le menu de navigation principale, le sélecteur pourrait prendre cette forme:</p>
+
+<p class="ppre ppre-dont">Don't</p>
+<pre><code>header ul {}</code></pre>
+
+<p>L'intention de ce selecteur sera de styler tous les <code>ul</code> dans le <code>header</code>, alors que notre volonté est de styler la navigation principale du site. Ceci est une <i>"intention pauvre"</i>: vous pouvez avoir plusieurs <code>header</code> au sein de votre page, et ils peuvent avoir un nombre variables de <code>ul</code> à l'intérieur. Ce type de sélecteur comporte donc le risque d'appliquer un style à un grand nombre d'éléments.</p>
+
+<p>Une meilleure approche ressemblerait à cela:</p>
+
+<p class="ppre ppre-do">Do</p>
+<pre><code>.site-nav {}</code></pre>
+
+<p>Un sélecteur sans ambiguité, explicite avec une <i>"bonne intention"</i>. Nous sélectionnons explicitement la bonne chose pour l'exacte raison.</p>
+
+
+<h4 id="performance-selecteur">Performance des sélecteurs</h4>
+
+<p>Un chapitre qui est -au vue de la qualité des navigateur modernes- plus intéressant qu'important, c'est la performance des sélecteurs. C'est à dire, comment un navigateur peut rapidement faire correspondre le sélecteur écrit dans notre CSS avec les noeuds qu'il trouve dans le DOM.</p>
+
+<p>De manière générale, on dira que plus un sélecteur sera long moins il sera rapide, par exemple:</p>
+
+<p class="ppre ppre-dont">Don't</p>
+<pre><code>body.home div.header ul {}</code></pre>
+
+<p>…sera un sélecteur bien moins efficace que:</p>
+
+<p class="ppre ppre-do">Do</p>
+<pre><code>.primary-nav {}</code></pre>
+
+<p>C'est parce-que les sélecteurs sont lus de droite à gauche par les navigateurs.</p>
+
+
+<h4 id="reutilisation-selecteur">Réutilisation</h4>
+
+<p><strong>Dans une approche tournée vers la construction des composants de l'UI, l'idée de réutilisation est primordiale. Nous voulons avoir la capacité de pouvoir déplacer, recycler, dupliquer et unifier les composants à travers les projets.</strong></p>
+
+<p>À cette fin, nous faisons un usage intensif des class. Les IDs, tout en étant très spécifique, ne peuvent pas être utilisés plus d'une fois dans une page donnée, au contraire des class pouvant être utilisées à foison. <strong>Tout ce que vous choisirez, du sélecteur à son nom, sera dans l'optique d'être réutilisé.</strong></p>
+
+
+<h4 id="id-dans-css">Les IDs dans la CSS</h4>
+
+<p>Si nous voulons garder une sélection CSS à un level bas, il y a une règle simple, facile à suivre et performante qui est: éviter d'utiliser les IDs dans nos CSS.</p>
+
+<p>Non seulement les IDs n'ont pas vocation à être réutilisables, mais ils sont également beaucoup plus spécifiques que n'importe quel autre sélecteur, et deviennent donc anormals dans notre façon de sélectionner. Lorsque le reste de vos sélecteurs ont une spécificité relativement faible (avec des class), vos sélecteurs basé sur les IDs sont, comparativement, beaucoup, beaucoup plus élevé.</p>
+
+<hr>
+
+
+
+
+
+<h3 id="responsive">Le responsive avec Sass</h3>
+
+<p>Il n'est plus nécessaire de présenter le Responsive Web Design qui est maintenant omniprésent. Sass peut nous faciliter la vie avec les points de rupture, voici ce qu’on peut faire.</p>
+
+<h4 id="nommer-pdr">Nommer les points de rupture</h4>
+
+<p>Je pense qu’on peut affirmer sans crainte que les media queries ne devraient jamais être liées à tel ou tel terminal. Par exemple, cibler spécifiquement les iPads ou les téléphones Blackberry (sisi ça existe encore) est une très mauvaise idée. Les media queries doivent s’occuper d’amplitudes de tailles d’écran, jusqu’à ce que le design ne fonctionne plus comme souhaité et que la media query suivante prenne la relève.</p>
+
+<p>Pour ces mêmes raisons, les points de rupture ne doivent pas être nommés en fonction d’un nom de terminal mais plutôt de quelque chose de plus général, d’autant que certains téléphones sont maintenant plus grands que certaines tablettes, certaines tablettes plus grandes que certains écrans d’ordinateurs, etc.</p>
+
+<pre><code class="language-scss" data-lang="scss"><span class="c1">// Yep
+$breakpoints: (
+  'medium': (min-width: 800px),
+  'large': (min-width: 1000px),
+  'huge': (min-width: 1200px),
+);
+
+// Nope
+$breakpoints: (
+  'tablet': (min-width: 800px),
+  'computer': (min-width: 1000px),
+  'tv': (min-width: 1200px),
+);</code></pre>
+
+<p>Pour plus d'infos sur le sujet, voici un lien vers un article de CSS Tricks : <a href="http://css-tricks.com/naming-media-queries/" target="_blank">Naming media queries</a>.</p>
+
+
+<h4 id="gestion-pdr">Gestions des points de rupture</h4>
+
+<p>Une fois vos points de rupture nommés comme vous le souhaitez, il vous faut un moyen de les utiliser dans les media queries. Il y a de nombreuses façons d’y parvenir, nous utiliserons la <code>@mixin</code> ci-dessous. C’est un système à la fois simple et efficace.</p>
+
+<pre><code>@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}</code></pre>
+
+
+<h4 id="mediaqueries">Utilisation des media-queries</h4>
+
+<p>Il y a peu, un débat faisait rage sur la question de savoir où placer les media queries dans le code : à l’intérieur de chaque fichier (comme le permet Sass) ou ailleurs de façon strictement dissociée ? Nous choisirons de placer les media-queries dans chaque fichier pour faciliter la maintenance.</p>
+
+<pre><code>.foo {
+  color: red;
+
+  @include respond-to('medium') {
+    color: blue;
+  }
+}</code></pre>
+
+<p>Ce qui conduit au résultat suivant en CSS :</p>
+
+<pre><code>.foo {
+  color: red;
+}
+
+@media (min-width: 800px) {
+  .foo {
+    color: blue;
+  }
+}</code></pre>
+
+<p>Il est vrai qu'avec cette solution nous dupliquons les media-queries, mais cela n'a pas d'importance une fois que Gzip a fait son oeuvre.</p>
+
+<hr>
+
+
+
+
+
+<h3 id="support">Support navigateurs</h3>
+
+<p><strong>Chez RegionsJob, ce sont les développeurs frontend qui sont les garants de la compatibilité entre les différents navigateurs.</strong></p>
+
+<p>Leur rôle est aussi de faire les recommendations sur les navigateurs qui seront supportés par nos sites en se basant sur les stats analytics de chacun. <a href="http://www.google.com/analytics/" target="_blank">Lien vers Google Analytics</a></p>
+
+<hr>
+
+
+
+
+
+<h3 id="html">HTML</h3>
+
+<h4 id="html-format">Formattage</h4>
+
+<p>Il faudra toujours placer entre double quote les attributs HTML. Cela réduit le risque d'accidents et est un format familier pour la majorité des développeurs. Pour que tout cela fonctionne, et d'autant plus soit valide, on optera pour ce modèle, en séparant les différentes valeur par un (1) espace:</p>
+
+<pre><code>&lt;div class="foo bar"&gt;</code></pre>
+
+<p>De la même manière que l'on sépare les grandes sections de notre CSS, on peut en faire de même avec le HTML:</p>
+
+<pre><code>&lt;header class="page-head"&gt;
+    ...
+&lt;/header&gt;
+
+
+
+
+
+&lt;main class="page-content"&gt;
+    ...
+&lt;/main&gt;
+
+
+
+
+
+&lt;footer class="page-foot"&gt;
+    ...
+&lt;/footer&gt;</code></pre>
+
+<p>Vous remarquerez que l'on n'utilise pas d'attribut <code>id</code>. On n'emploiera uniquement ce dernier pour faciliter la sélection d'un élément du DOM en JavaScript. Nos CSS ne comporteront donc jamais de sélecteurs avec <code>#</code>.</p>
+
+
+
+<h4 id="doctype">Doctype</h4>
+
+<p>Afin d'appliquer le standard et le rendu plus cohérent dans tous les navigateurs, on utilisera le DOCTYPE HTML5.</p>
+
+<pre><code>&lt;!DOCTYPE html></code></pre>
+
+
+<h4 id="encoding">Encoding</h4>
+
+<p>L'encodage utilisé sera l'UTF-8.</p>
+
+<pre><code>&lt;head>
+  &lt;meta charset="UTF-8">
+&lt;/head></code></pre>
+
+
+<h4 id="attributs">Ordre des attributs</h4>
+
+<p>Les attributs HTML seront dans cet ordre particulier afin de faciliter la lecture du code :</p>
+
+<ul>
+    <li>class</li>
+    <li>id, name</li>
+    <li>data-*</li>
+    <li>src, for, type, href, value</li>
+    <li>title, alt</li>
+    <li>aria-*, role</li>
+</ul>
+
+<p>Exemple :</p>
+
+<pre><code><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;...&quot;</span> <span class="na">id=</span><span class="s">&quot;...&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;modal&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+  Example link
+<span class="nt">&lt;/a&gt;</span>
+
+<span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;...&quot;</span> <span class="na">alt=</span><span class="s">&quot;...&quot;</span><span class="nt">&gt;</span></code></pre>
+
+
+<h4 id="modernizr">Modernizr</h4>
+
+<p>Modernizr est une librairie JavaScript qui permet de connaître les fonctionnalités supportés par le navigateur de votre visiteur afin de pouvoir adapter votre site et l’expérience utilisateur aux possibilités de son navigateur. Nous l'utilisons principalement pour faire supporter le balisage HTML5 aux anciens navigateurs.</p>
+
+<p>Nous l'utilisons également sur les Xjobs afin d'utiliser les media-queries en JavaScript et ainsi charger ou non des élements en fonction de la taille du viewport (ex: la GoogleMap sur les Xjobs).</p>
+
+<p>Afin de porter attention aux performances frontend, nous veillerons à ne pas appeler Modernizr en haut du DOM sur les navigateurs récents. Nous aurons ainsi la ligne ci-dessous dans le <code><head></code> pour les anciens navigateurs (IE7 et 8) :</p>
+
+<pre><code>
+&lt;!--[if lt IE 9 ]>&lt;script src="http://ressources.regionsjob.com/project/js/modernizr.min.js">&lt;/script>&lt;![endif]-->
+
+</code></pre>
+
+<p>Et en bas du DOM pour les navigateurs les plus récents :</p>
+
+<pre><code>
+&lt;!--[if gte IE 9]&gt;&lt;script src="http://ressources.regionsjob.com/xjob/tags/1.3.7/js/modernizr.min.js"&gt;&lt;/script&gt;&lt;![endif]--&gt;
+&lt;!--[if !IE]&gt;&lt;!--&gt; &lt;script src="http://ressources.regionsjob.com/xjob/tags/1.3.7/js/modernizr.min.js"&gt;&lt;/script&gt; &lt;!--![endif]--&gt;
+
+</code></pre>
+
+
+
+
+
+</div> <!-- .wrapper -->
+
+</body>
+
+</html>
